@@ -1,8 +1,10 @@
-using Microsoft.AspNetCore.Builder;
+ï»¿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.EntityFrameworkCore;
+using RazorPagesMovie.Data;
 
 namespace RazorPagesMovie
 {
@@ -19,6 +21,10 @@ namespace RazorPagesMovie
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
+
+            // RazorPageMovieContextã«æ¥ç¶šæ–‡å­—åˆ—ã‚’è¨­å®š
+            services.AddDbContext<RazorPagesMovieContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("RazorPagesMovieContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -37,7 +43,6 @@ namespace RazorPagesMovie
 
             app.UseHttpsRedirection();
 
-            // Ã“Iƒtƒ@ƒCƒ‹‚Ì—˜—p‚ğ‹–‰Â
             app.UseStaticFiles();
 
             app.UseRouting();
