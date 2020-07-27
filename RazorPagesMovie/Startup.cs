@@ -23,6 +23,7 @@ namespace RazorPagesMovie
             services.AddRazorPages();
 
             // RazorPageMovieContextに接続文字列を設定
+            // DI注入
             services.AddDbContext<RazorPagesMovieContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("RazorPagesMovieContext")));
         }

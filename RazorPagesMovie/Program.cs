@@ -1,5 +1,9 @@
+using System;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using RazorPagesMovie.Models;
 
 namespace RazorPagesMovie
 {
@@ -7,8 +11,24 @@ namespace RazorPagesMovie
     {
         public static void Main(string[] args)
         {
-            // .Net Coreの汎用ホスト：HostBuilderが生成
-            CreateHostBuilder(args).Build().Run();
+            var host = CreateHostBuilder(args).Build();
+
+            using (var scope = host.Services.CreateScope()) 
+            {
+                var services = scope.ServiceProvider;
+
+                try 
+                {
+                    SeedData.Initialize(services);
+                }
+                catch (Exception ex) 
+                {
+                    var logger = services.GetRequiredService<ILogger<Program>>();
+                    logger.LogError(ex, "DB初期データ作成時にエラーが発生しました。");
+                }
+            }
+
+            host.Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
