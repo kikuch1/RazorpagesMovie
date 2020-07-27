@@ -1,6 +1,9 @@
-﻿@page
+﻿@* @pageディレクティブ：ファイルがMVCアクションになる *@
+@page
+@* @modelディレクティブ：Razorページのクラス名 *@
 @model RazorPagesMovie.Pages.Movies.IndexModel
 
+@* _Layoutページで定義する<title>要素で利用 *@ 
 @{
     ViewData["Title"] = "Index";
 }

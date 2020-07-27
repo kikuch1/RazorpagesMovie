@@ -11,11 +11,22 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
+        @* フォームタグヘルパー *@
+        @* CSRF対策あり *@
         <form method="post">
+            @* 検証タグヘルパー *@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
+                @* asp-for属性：for属性の設定及び表示文字列を設定（対象の変数のDisplay属性を引用する） *@
+                @* 以下でも代用可 *@
+                @*@Html.LabelFor(model => Model.Movie.Title)*@
                 <label asp-for="Movie.Title" class="control-label"></label>
+                @* 自動的にid属性, name属性, type属性が指定される(明示的に指定された場合は上書きしない) *@
+                @* id属性   => Movie.Title *@
+                @* name属性 => Movie_Title *@
+                @* type属性 => text *@
                 <input asp-for="Movie.Title" class="form-control" />
+                @* 検証タグヘルパー *@
                 <span asp-validation-for="Movie.Title" class="text-danger"></span>
             </div>
             <div class="form-group">

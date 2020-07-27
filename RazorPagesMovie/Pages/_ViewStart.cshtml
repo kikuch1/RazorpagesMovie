@@ -1,3 +1,12 @@
-﻿@{
+﻿@* RazorPagesの実行順序 *@
+@* １・_ViewStart.cshtml *@
+@* ２・指定されたPage *@
+@* ３・_Layout.cshtml *@
+
+@* 各PageでViewDataに定義した値を_Layoutに組み込むことが可能 *@
+@* パンくずリストや、サブメニューなど *@
+
+@{
+    // 全ページのWrapページを指定
     Layout = "_Layout";
 }
