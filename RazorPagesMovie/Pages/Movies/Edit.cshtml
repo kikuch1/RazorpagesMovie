@@ -1,4 +1,6 @@
-﻿@page
+﻿@* idをURLパスに追加する *@
+@* Index.cshtmlのEditリンクボタンで、<a href="/Movies/Edit/1">Edit</a>となる *@
+@page "{id:int}"
 @model RazorPagesMovie.Pages.Movies.EditModel
 
 @{

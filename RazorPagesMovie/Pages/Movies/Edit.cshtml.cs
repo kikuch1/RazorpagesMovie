@@ -51,6 +51,7 @@ namespace RazorPagesMovie.Pages.Movies
             {
                 await _context.SaveChangesAsync();
             }
+            // 存在チェックの実装
             catch (DbUpdateConcurrencyException)
             {
                 if (!MovieExists(Movie.ID))
